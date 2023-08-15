@@ -17,3 +17,8 @@
 function solution(arr) {
   return arr.filter((v, i) => v !== arr[i - 1]);
 }
+
+
+let answer = s.split(' ').map(word => 
+  word.split('').map((c, i) => 
+  i % 2 == 0 ? c.toUpperCase() : c.toLowerCase()).join('')).join(' ');
