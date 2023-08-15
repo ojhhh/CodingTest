@@ -24,19 +24,15 @@
 
 function solution(n) {
   let answer = [];
-  let temp = 0;
+  let tmp = 0;
   while (n > 0) {
     answer.push(n % 3);
     n = Math.floor(n / 3);
   }
-  // answer.reverse();
-  // console.log(answer);
-
   for (let i = answer.length; i > 0; i--) {
-    temp += answer[answer.length - i] * Math.pow(3, i - 1);
-    // console.log(temp);
+    tmp += answer[answer.length - i] * Math.pow(3, i - 1);
   }
-  return answer;
+  return tmp;
 }
 
 solution(125);
