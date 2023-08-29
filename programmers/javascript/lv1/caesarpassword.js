@@ -17,14 +17,19 @@ function solution(s, n) {
   let answer = "";
 
   for (let i = 0; i < s.length; i++) {
-    if (s[i] === "z") s[i] = "a";
-    // answer += String.fromCodePoint(s[i].charCodeAt() + 1);
+    let tmp = s.charCodeAt(i);
+
+    if (tmp >= 65 && tmp <= 90) {
+      answer += String.fromCharCode(((tmp - 65 + n) % 26) + 65);
+    } else if (tmp >= 97 && tmp <= 122) {
+      answer += String.fromCharCode(((tmp - 97 + n) % 26) + 97);
+    } else {
+      answer += s[i];
+    }
   }
-  console.log(s);
   return answer;
 }
 
 // solution("AB", 1);
-solution("z", 1);
-
-// console.log(" ".charCodeAt());
+// solution("z", 1);
+console.log(solution("a B z", 4));
