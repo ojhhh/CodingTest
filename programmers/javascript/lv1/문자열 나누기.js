@@ -28,30 +28,30 @@
 
 function solution(s) {
   let answer = 0;
-  let cnt = 0;
-
-  // 첫번째 문자가 "b"닌까 "b"와 같다 1증가 두번째는 "a"닌까 "b"와 같지않다 1증가해서 맞다와 아니다가 같으니 거기서 짤라 재귀함수인가?
-  // s.split("").map((a, b, c) => {
-  //   // console.log(a);
-  //   obj[a] = (obj[a] || 0) + 1;
-  //   console.log(obj);
-  //   const values = Object.values(obj);
-  //   console.log(values);
-
-  //   tmp += a;
-  // });
-  s.split("").forEach((a, b) => {
-    if (a == a[b]) cnt++;
-    if (a != a[b]) --cnt;
-    if (!cnt) {
-      const get = s.slice(0, b + 1);
-      console.log(get);
+  while (s.length > 0) {
+    let firstChar = s[0];
+    let countFirstChar = 0;
+    let countOtherChar = 0;
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] === firstChar) {
+        countFirstChar++;
+      } else {
+        countOtherChar++;
+      }
+      if (countFirstChar === countOtherChar) {
+        s = s.slice(i + 1);
+        answer++;
+        break;
+      }
     }
-    console.log("자르고 난 나머지 :", s.slice());
-  });
-  // return answer;
-}
 
+    if (countFirstChar !== countOtherChar) {
+      answer++;
+      break;
+    }
+  }
+  return answer;
+}
 console.log(solution("banana"));
 // console.log(solution("abracadabra"));
 // console.log(solution("banaaaabbaccccabbana"));
