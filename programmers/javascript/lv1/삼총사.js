@@ -32,10 +32,11 @@ function solution(number) {
   let answer = 0;
   let arr = [];
   number.forEach((a, b, c) => {
-    let first = a;
-    let second = c[b];
-    let third = c[b];
-    arr.push([first, second, third]);
+    const ta = a;
+    const tb = number[b + 1];
+
+    console.log("ta : ", ta);
+    console.log("tb : ", tb);
   });
   return arr;
 }
