@@ -28,17 +28,46 @@ const ta = [-2, 3, 0, 2, -5]; // 2
 const tb = [-3, -2, -1, 0, 1, 2, 3]; // 5
 const tc = [-1, 1, -1, 1]; // 0
 
+// 3개의 값을 가진 모든 경우의 수를 저장해서
+// 그 값을 모두 더한다음에
+// 3개의 숫자의 합이 0인 배열의 갯수를 구하는겨
+
+// ta에서 나올수 있는 3자리 수는
+// [-2, 3, 0] [-2, 3, 2] [-2, 3, -5]
+// [-2, 0, 2] [-2, 0, 2] [-2, 0, -5]
+// [-2, 2, -5]
+// [3, 0, 2] [3, 0, -5] [3, 2, -5]
+// [0, 2, -5]
+
 function solution(number) {
   let answer = 0;
   let arr = [];
-  number.forEach((a, b, c) => {
-    const ta = a;
-    const tb = number[b + 1];
+  let sum = 0;
+  function recursive(start, tmp) {
+    if (tmp.length === 3) {
+      arr.push(tmp.slice());
+      return;
+    }
 
-    console.log("ta : ", ta);
-    console.log("tb : ", tb);
+    for (let i = start; i < number.length; i++) {
+      tmp.push(number[i]);
+      recursive(i + 1, tmp);
+      tmp.pop();
+    }
+  }
+
+  recursive(0, []);
+
+  console.log(arr);
+  arr.map((a) => {
+    a.forEach((v) => {
+      sum += v;
+    });
+    if (sum == 0) answer++;
+    sum = 0;
   });
-  return arr;
+
+  return answer;
 }
 
-console.log(solution(ta));
+console.log(solution(tc));
