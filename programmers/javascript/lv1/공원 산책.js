@@ -54,66 +54,41 @@ function solution(park, routes) {
   let s1 = park.findIndex((item) => item.includes("S"));
   let s2 = park[s1].indexOf("S");
 
-  console.log("start : ", [s1, s2]);
-
   routes.map((a) => {
     const direction = a[0];
     const move = parseInt(a[2]);
     switch (direction) {
       case "E":
-        if (!park[s1][s2 + move]) {
-          console.log("경로 이탈");
-          return;
-        }
+        if (!park[s1][s2 + move]) return;
 
         for (let i = s2; i < s2 + move; i++) {
-          if (park[s1][i] == "X") {
-            return;
-          }
+          if (park[s1][i + 1] == "X") return;
         }
-
         s2 += move;
         break;
       case "S":
-        if (!park[s1 + move][s2]) {
-          console.log("경로 이탈");
-          return;
-        }
+        if (!park[s1 + move]) return;
 
         for (let i = s1; i < s1 + move; i++) {
-          if (park[i][s2] == "X") {
-            return;
-          }
+          if (park[i + 1][s2] == "X") return;
         }
 
         s1 += move;
         break;
       case "W":
-        if (!park[s1][s2 - move]) {
-          console.log("경로 이탈");
-
-          return;
-        }
+        if (!park[s1][s2 - move]) return;
 
         for (let i = s2; i > s2 - move; i--) {
-          if (park[s1][i] == "X") {
-            return;
-          }
+          if (park[s1][i - 1] == "X") return;
         }
 
         s2 -= move;
         break;
       case "N":
-        if (!park[s1 - move][s2]) {
-          console.log("경로 이탈");
-
-          return;
-        }
+        if (!park[s1 - move]) return;
 
         for (let i = s1; i > s1 - move; i--) {
-          if (park[i][s2] == "X") {
-            return;
-          }
+          if (park[i - 1][s2] == "X") return;
         }
 
         s1 -= move;
@@ -128,25 +103,27 @@ function solution(park, routes) {
 // console.log(solution(["SOO", "OOO", "OOO"], ["E 2", "S 2", "W 1"])); // [2,1]
 // console.log(solution(["SOO", "OXX", "OOO"], ["E 2", "S 2", "W 1"])); // [0,1]
 // console.log(solution(["OSO", "OOO", "OXO", "OOO"], ["E 2", "S 3", "W 1"])); // [0,0]
-console.log(
-  solution(
-    ["OOOOO", "OOOOO", "OOSOO", "OOOOO", "OOOOO"],
-    [
-      "E 3",
-      "W 3",
-      "S 3",
-      "N 3",
-      "E 2",
-      "E 1",
-      "W 4",
-      "W 1",
-      "S 2",
-      "S 1",
-      "N 4",
-      "N 1",
-    ]
-  )
-); // [0, 0]
+// console.log(
+//   solution(
+//     ["OOOOO", "OOOOO", "OOSOO", "OOOOO", "OOOOO"],
+//     [
+//       "E 3",
+//       "W 3",
+//       "S 3",
+//       "N 3",
+//       "E 2",
+//       "E 1",
+//       "W 4",
+//       "W 1",
+//       "S 2",
+//       "S 1",
+//       "N 4",
+//       "N 1",
+//     ]
+//   )
+// ); // [0, 0]
+
+console.log(solution(["OXXO", "XSXO", "XXXX"], ["E 1", "S 1"])); //  [1, 1]
 
 // 일단 출발 지점인 S를 찾아야 할듯
 // 공원을 그려줄 배열을 그려야할듯

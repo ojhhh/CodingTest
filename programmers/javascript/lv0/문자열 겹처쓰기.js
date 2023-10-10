@@ -19,9 +19,12 @@
 // 예제 2번의 my_string에서 인덱스 7부터 overwrite_string의 길이만큼에 해당하는 부분은 "29b8UYP"이고 이를 "merS123"로 바꾼 "ProgrammerS123"를 return 합니다.
 
 function solution(my_string, overwrite_string, s) {
-  let answer = "";
-  console.log(my_string.splice(s, overwrite_string.length));
-  return answer;
+  return (
+    my_string.slice(0, s) +
+    overwrite_string +
+    my_string.slice(s + overwrite_string.length)
+  );
 }
 
-console.log(solution("He11oWor1d", "lloWorl", 2));
+// console.log(solution("He11oWor1d", "lloWorl", 2));
+console.log(solution("Program29b8UYP", "merS123", 7));
