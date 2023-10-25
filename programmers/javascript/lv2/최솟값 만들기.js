@@ -21,13 +21,14 @@
 // [1,2]	[3,4]	10
 
 function solution(A, B) {
-  let answer = 0;
-  let tmp = 0;
+  A.sort((a, b) => a - b);
 
-  A.forEach((item, idx) => {
-    tmp = answer + item * B[idx];
-    answer = tmp;
-  });
+  B.sort((a, b) => b - a);
+
+  let answer = 0;
+  for (let i = 0; i < A.length; i++) {
+    answer += A[i] * B[i];
+  }
 
   return answer;
 }
