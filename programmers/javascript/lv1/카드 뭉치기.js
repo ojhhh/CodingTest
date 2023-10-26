@@ -24,9 +24,31 @@
 // ["i", "water", "drink"]	["want", "to"]	["i", "want", "to", "drink", "water"]	"No"
 
 function solution(cards1, cards2, goal) {
-  let index = goal.findIndex((word) => word === "think");
-  console.log(index); // 0
+  if (
+    cards1.toString() == goal.toString() ||
+    cards2.toString() == goal.toString()
+  )
+    return "Yes";
+
+  const cards2indexOf = cards2.map((word) => goal.indexOf(word));
+  console.log(cards2indexOf);
+  for (let i = 0; i < cards2indexOf.length; i++) {
+    if (cards2indexOf[i] < 0) continue;
+    cards1.splice(cards2indexOf[i], 0, cards2[i]);
+  }
+
+  if (cards1.length > goal.length) cards1.splice(goal.length - cards1.length);
+  console.log(cards1);
+  return cards1.toString() == goal.toString() ? "Yes" : "No";
 }
+
+console.log(
+  solution(
+    ["i", "drink", "water"],
+    ["want", "to", "juice"],
+    ["i", "want", "to", "drink", "juice"]
+  )
+); // Yes
 
 // console.log(
 //   solution(
@@ -44,7 +66,7 @@ function solution(cards1, cards2, goal) {
 //   )
 // );
 
-// console.log(solution(["def", "bcd"], ["b", "c", "d"], ["bcd"]));
+// console.log(solution(["def", "bcd"], ["b", "c", "d"], ["bcd"])); // No
 
 // console.log(
 //   solution(
@@ -54,10 +76,14 @@ function solution(cards1, cards2, goal) {
 //   )
 // ); // Yes
 
-console.log(
-  solution(
-    ["you", "smarter"],
-    ["think", "more", "will", "be"],
-    ["think", "more", "you", "will", "be", "smarter"]
-  )
-); // Yes
+// console.log(
+//   solution(
+//     ["you", "smarter"],
+//     ["think", "more", "will", "be"],
+//     ["think", "more", "you", "will", "be", "smarter"]
+//   )
+// ); // Yes
+
+// console.log(
+//   solution(["list", "length", "important"], ["are", "very"], ["are", "very"])
+// ); // Yes
