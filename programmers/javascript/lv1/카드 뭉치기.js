@@ -31,14 +31,14 @@ function solution(cards1, cards2, goal) {
     return "Yes";
 
   const cards2indexOf = cards2.map((word) => goal.indexOf(word));
-  console.log(cards2indexOf);
+
   for (let i = 0; i < cards2indexOf.length; i++) {
     if (cards2indexOf[i] < 0) continue;
     cards1.splice(cards2indexOf[i], 0, cards2[i]);
   }
 
   if (cards1.length > goal.length) cards1.splice(goal.length - cards1.length);
-  console.log(cards1);
+
   return cards1.toString() == goal.toString() ? "Yes" : "No";
 }
 
